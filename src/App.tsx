@@ -5,7 +5,7 @@ import { WagmiProvider } from 'wagmi'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ActionButtonList } from './components/ActionButtonList'
 import { InfoList } from './components/InfoList'
-import { projectId, metadata, networks, wagmiAdapter } from './config/index.tsx'
+import { projectId, metadata, networks, wagmiAdapter } from '../config'
 
 import "./App.css"
 
