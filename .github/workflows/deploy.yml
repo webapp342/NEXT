@@ -11,18 +11,30 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Repository'yi Klonlama
       - name: Checkout repo
         uses: actions/checkout@v3
 
-      - name: Setup Node
+      # Node.js Sürümünü Ayarlama
+      - name: Setup Node.js
         uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Projenize uygun Node.js sürümünü yazın
+          cache: 'pnpm'      # pnpm için cache desteği
 
+      # pnpm'i Kurma
+      - name: Install pnpm
+        run: npm install -g pnpm
+
+      # Bağımlılıkları Yükleme
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
+        run: pnpm install
 
+      # Projeyi Build Etme
       - name: Build project
-        run: npm run build
+        run: pnpm build
 
+      # Build Çıktısını Artifact Olarak Yükleme
       - name: Upload production-ready build files
         uses: actions/upload-artifact@v3
         with:
@@ -36,12 +48,14 @@ jobs:
     if: github.ref == 'refs/heads/main'
 
     steps:
+      # Artifact İndirme
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
           name: production-files
           path: ./dist
 
+      # GitHub Pages'e Deploy Etme
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
