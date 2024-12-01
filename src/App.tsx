@@ -5,7 +5,7 @@ import { WagmiProvider } from 'wagmi'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ActionButtonList } from './components/ActionButtonList'
 import { InfoList } from './components/InfoList'
-import { projectId, metadata, networks, wagmiAdapter } from '../config'
+import { projectId, metadata, networks, wagmiAdapter } from './config'
 
 import "./App.css"
 
@@ -28,7 +28,7 @@ export function App() {
   return (
     <div className={"pages"}>
       <img src="/reown.svg" alt="Reown" style={{ width: '150px', height: '150px' }} />
-      <h1>AppKit Wagmi React dApp Example</h1>
+      <h1>AppKit Wagmi React dApp</h1>
       <WagmiProvider config={wagmiAdapter.wagmiConfig}>
         <QueryClientProvider client={queryClient}>
             <appkit-button />
